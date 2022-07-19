@@ -1,0 +1,41 @@
+﻿using System;
+using System.Windows.Forms;
+
+namespace TicTacToe
+{
+    public partial class Form3 : Form
+    {
+        public Form3()
+        {
+            InitializeComponent();
+        }
+
+        public static string buttonTwoText = "";
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form1.botplayerExists = false;
+            buttonTwoText = "FRIEND";
+            this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1.botplayerExists = true;
+            buttonTwoText = "BOT";
+            this.Close();
+        }
+
+        private void Form3_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //If we haven't clicked either button but the form is still closing
+            //aka if we have clicked exit on this form, then close entire program
+            if (buttonTwoText == "")
+            {
+                //Would use Application.Exit() however it won't kill all our forms
+                //including the ones hidden while this form is shown and runs
+                Environment.Exit(0);
+            }
+        }
+    }
+}
